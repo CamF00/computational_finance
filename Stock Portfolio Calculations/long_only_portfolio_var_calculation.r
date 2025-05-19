@@ -11,10 +11,10 @@
 # invested in each of the asset); (ii) calculate the portfolio's standard deviation.
 
 # Clean the workspace
-Rm(list = ls(all = TRUE))
+rm(list = ls(all = TRUE))
 
 # Load the necessary library
-Library(quadprog)
+library(quadprog)
 
 # Input the data
 r.f <- 0.015
@@ -24,14 +24,14 @@ mu.C <- 0.660
 sigma.A <- 0.1580
 sigma.B <- 0.2370
 sigma.C <- 0.1880
-cov.AB <- 0.0067
-cov.BC <- -0.0036
-cov.AC <- 0.0040
+sigma.AB <- 0.0067
+sigma.BC <- -0.0036
+sigma.AC <- 0.0040
 
 # Assigning values to names.
 asset.names <- c("Accenture", "BP", "Costco")
 mu.vec <- c(mu.A, mu.B, mu.C)
-names(mu.vec) <- asset.names)
+names(mu.vec) <- asset.names
 
 Sigma.mat <- matrix(c(sigma.A^2, sigma.AB, sigma.AC,
                       sigma.AB, sigma.B^2, sigma.BC,
@@ -46,7 +46,7 @@ D.vec <- rep(0, 3)
 A.mat <- cbind(mu.vec, rep(1, 3), diag(3))
 B.vec <- c(mu.B, 1, rep(0, 3))
 
-output <- solve.QP(Dmat = D.mat, Dvec = D.vec, Amat = A.mat, Bvec = B.vec, meq = 2)
+output <- solve.QP(Dmat = D.mat, dvec = D.vec, Amat = A.mat, dvec = B.vec, meq = 2)
 
 # i) 
 x.star.vec <- output$solution
