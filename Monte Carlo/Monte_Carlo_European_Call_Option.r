@@ -16,16 +16,16 @@ rf <- 0.015
 sigma <- 0.125
 
 # Pre-compute constants
-B <- 1 / exp(Rf * T)
+B <- 1 / exp(rf * T)
 ST <- rep(0, N)
 CT <- rep(0, N)
 epsilon <- rnorm(N, 0, 1)
 
 # Geometric Brownian Motion => ST = S0 * exp((Rf - (Sigma^2/2) * T) + (sigma * epsilon * sqrt(T)
-ST <- S0 * exp((Rf - (Sigma^2/2)) * T) + (sigma * epsilon * sqrt(T))
+ST <- S0 * exp((rf - (sigma^2/2)) * T) + (sigma * epsilon * sqrt(T))
 
 # Calculating the call option payoff
-For(Sim.idx in 1:N) {
+for(Sim.idx in 1:N) {
   CT[Sim.idx] <- max(0, ST[Sim.idx] - K)
 }
 
