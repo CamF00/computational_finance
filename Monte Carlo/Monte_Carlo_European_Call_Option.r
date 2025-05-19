@@ -5,7 +5,7 @@
 # the script.
 
 # Clear the workspace
-Rm(list = ls(all = TRUE))
+rm(list = ls(all = TRUE))
 
 # Input the data
 S0 <- 120
